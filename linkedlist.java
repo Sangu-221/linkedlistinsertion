@@ -11,7 +11,7 @@ public class linkedlist {
             next=null;
         }
     }
-        public void insertAtHead(int data) {
+    public void insertAtHead(int data) {
             Node t = new Node(data);
             if(head==null){
                 head=t;
@@ -37,8 +37,17 @@ public class linkedlist {
     public void insertBefore(int data,int position) {
         Node t = new Node(data);
         Node itr=head;
-        while(itr.next.data!=position){
+        if(itr.data==position){
+            t.next=itr;
+            head=t;
+            return;
+        }
+        while(itr.next!=null  &&   itr.next.data!=position  ){
             itr=itr.next;
+        }
+        if(itr.next==null){
+            System.out.println("element not found...");
+            return;
         }
         t.next=itr.next;
         itr.next=t;
@@ -65,6 +74,7 @@ public class linkedlist {
             
         }
     }
+    
     public static void main(String[] args) {
         linkedlist ll = new linkedlist();
         Scanner sc = new Scanner(System.in);
